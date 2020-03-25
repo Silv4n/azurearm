@@ -14,7 +14,8 @@
      "maxLength": 30
    },
    "vmSize": {
-     "type": "string"
+     "type": "string",
+     "defaultValue": "Standard_A2_v2"
    },
    "adminUsername": {
      "type": "string"
@@ -77,7 +78,7 @@
  },
  "variables": {
    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork'), parameters('subnetName'))]",
-   "scriptExtension": "hesi_vm_extension"
+   "scriptExtension": "[parameters('vmName')]"
  },
  "resources": [
    {
@@ -234,7 +235,7 @@
      "name": "[variables('scriptExtension')]",
      "location": "[parameters('location')]",
      "dependsOn": [
-       "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+       "[concat('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
      ],
      "properties": {
        "publisher": "Microsoft.Compute",
