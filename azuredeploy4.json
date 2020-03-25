@@ -259,7 +259,7 @@
            ]
          },
          "commandToExecute": {
-           "value": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File ', 'azdeploy-newfile.ps1')]"
+           "value": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File ', 'azdeploy_newfile.ps1')]"
          }
        }
      }
