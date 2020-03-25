@@ -76,7 +76,8 @@
    }
  },
  "variables": {
-   "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork'), parameters('subnetName'))]"
+   "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork'), parameters('subnetName'))]",
+   "scriptExtension": "hesi_vm_extension"
  },
  "resources": [
    {
@@ -224,6 +225,27 @@
            "enabled": true,
            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))).primaryEndpoints.blob]"
          }
+       }
+     }
+   },
+   {
+     "type": "Microsoft.Compute/virtualMachines/extensions",
+     "apiVersion": "2019-07-01",
+     "name": "[variables('scriptExtension')]",
+     "location": "[parameters('location')]",
+     "dependsOn": [
+       "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+     ],
+     "properties": {
+       "publisher": "Microsoft.Compute",
+       "type": "CustomScriptExtension",
+       "typeHandlerVersion": "1.7",
+       "autoUpgradeMinorVersion": true,
+       "settings": {
+         "fileUris": [
+           "https://raw.githubusercontent.com/Silv4n/azurearm/master/azdeploy_newfile.ps1"
+         ],
+         "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File azdeploy_newfile.ps1"
        }
      }
    }
