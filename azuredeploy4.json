@@ -233,9 +233,9 @@
    {
      "type": "Microsoft.Resources/deployments",
      "apiVersion": "2019-07-01",
-     "name": "[concat(parameters('vmName'), '-NewFile')]",
+     "name": "[concat(parameters('vmName'), '-azdeploy-newfile')]",
      "dependsOn": [
-       "[concat('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+       "[resourceId('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
      ],
      "properties": {
        "mode": "Incremental",
