@@ -78,7 +78,8 @@
  },
  "variables": {
    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork'), parameters('subnetName'))]",
-   "scriptExtension": "[parameters('vmName')]"
+   "scriptExtensionName": "hesiscript1",
+   "scriptExtension": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'), variables('scriptExtensionName'))]"
  },
  "resources": [
    {
