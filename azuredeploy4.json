@@ -78,8 +78,8 @@
  },
  "variables": {
    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork'), parameters('subnetName'))]",
-   "scriptExtensionName": "hesiscript1",
-   "scriptExtension": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'), variables('scriptExtensionName'))]"
+   "extensionUrl": "[uri('https://github.com/Silv4n/azurearm/raw/master/', 'customScriptExtension.json')]",
+   "psScriptFileUri": "[uri('https://github.com/Silv4n/azurearm/raw/master/', 'azdeploy_newfile.ps1')]"
  },
  "resources": [
    {
@@ -231,23 +231,36 @@
      }
    },
    {
-     "type": "Microsoft.Compute/virtualMachines/extensions",
+     "type": "Microsoft.Resources/deployments",
      "apiVersion": "2019-07-01",
-     "name": "[variables('scriptExtension')]",
-     "location": "[parameters('location')]",
+     "name": "[concat(parameters('vmName'), '-NewFile')]",
      "dependsOn": [
        "[concat('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
      ],
      "properties": {
-       "publisher": "Microsoft.Compute",
-       "type": "CustomScriptExtension",
-       "typeHandlerVersion": "1.7",
-       "autoUpgradeMinorVersion": true,
-       "settings": {
-         "fileUris": [
-           "https://raw.githubusercontent.com/Silv4n/azurearm/master/azdeploy_newfile.ps1"
-         ],
-         "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File azdeploy_newfile.ps1"
+       "mode": "Incremental",
+       "templateLink": {
+         "uri": "[variables('extensionUrl')]",
+         "contentVersion": "1.0.0.0"
+       },
+       "parameters": {
+         "location": {
+           "value": "[parameters('location')]"
+         },
+         "extensionName": {
+           "value": "cse"
+         },
+         "vmName": {
+           "value": "[parameters('vmName')]"
+         },
+         "fileUris": {
+           "value": [
+             "[variables('psScriptFileUri')]"
+           ]
+         },
+         "commandToExecute": {
+           "value": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File ', 'azdeploy-newfile.ps1')]"
+         }
        }
      }
    }
