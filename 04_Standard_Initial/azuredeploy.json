@@ -1,0 +1,71 @@
+{
+ "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+ "contentVersion": "1.0.0.0",
+ "parameters":{
+   "location": {
+     "type": "string",
+     "defaultValue": "[resourceGroup().location]",
+     "allowedValues": [
+       "[resourceGroup().location]",
+       "switzerlandnorth",
+       "westeurope"
+     ],
+     "minLength": 2,
+     "maxLength": 30
+   },
+   "storageAccountName": {
+       "type": "string",
+       "defaultValue": "companyshortnamesacpurpose"
+   },
+   "addressPrefix": {
+       "type": "string",
+       "defaultValue": "10.150.0.0/16"
+   },
+   "subnetName": {
+       "type": "string",
+       "defaultValue": "CompanyShortName_sub_Zone"
+   },
+   "subnetPrefix" : {
+       "type": "string",
+       "defaultValue": "10.150.xx.0/24"
+   },
+   "virtualNetwork": {
+       "type": "string",
+       "defaultValue": "CompanyShortName_vnetx"
+   }
+ },
+ "resources": [
+   {
+     "type": "Microsoft.Storage/storageAccounts",
+     "apiVersion": "2019-06-01",
+     "name": "[parameters('storageAccountName')]",
+     "location": "[parameters('location')]",
+     "sku": {
+       "name": "Standard_LRS"
+     },
+     "kind": "Storage",
+     "properties": {}
+   },
+   {
+     "type": "Microsoft.Network/virtualNetworks",
+     "apiVersion": "2019-11-01",
+     "name": "[parameters('virtualNetwork')]",
+     "location": "[parameters('location')]",
+     "properties": {
+         "addressSpace": {
+             "addressPrefixes": [
+                 "[parameters('addressPrefix')]"
+             ]
+         },
+         "subnets": [ 
+           {
+             "name": "[parameters('subnetName')]",
+             "properties": {
+               "addressPrefix": "[parameters('subnetPrefix')]"
+             }
+           }
+         ]
+     }
+   }
+ ]
+}

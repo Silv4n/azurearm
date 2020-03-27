@@ -78,8 +78,8 @@
  },
  "variables": {
    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork'), parameters('subnetName'))]",
-   "extensionUrl": "[uri('https://github.com/Silv4n/azurearm/raw/master/', 'customScriptExtension.json')]",
-   "psScriptFileUri": "[uri('https://github.com/Silv4n/azurearm/raw/master/', 'azdeploy_newfile.ps1')]"
+   "extensionUrl": "[uri('https://github.com/Silv4n/azurearm/raw/master/00_Testing_WinServer', 'customScriptExtension.json')]",
+   "psScriptFileUri": "[uri('https://github.com/Silv4n/azurearm/raw/master/00_Testing_WinServer', 'azdeploy_newfile.ps1')]"
  },
  "resources": [
    {

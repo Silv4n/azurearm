@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "GEN-UNIQUE"
+        },
+        "storageAccountName": {
+            "value": "GEN-UNIQUE"
+        },
+        "vmSize": {
+            "value": "GEN-UNIQUE"
+        },
+        "adminUsername": {
+            "value": "GEN-UNIQUE"
+        },
+        "adminPassword": {
+            "value": "GEN-PASSWORD"
+        },
+        "windowsOSVersion": {
+            "value": "GEN-UNIQUE"
+        },
+        "dataDiskSize": {
+            "value": "GEN-UNIQUE"
+        },
+        "nicName": {
+            "value": "GEN_UNIQUE"
+        },
+        "addressPrefix": {
+            "value": "GEN-UNIQUE"
+        },
+        "subnetName": {
+            "value": "GEN-UNIQUE"
+        },
+        "subnetPrefix": {
+            "value": "GEN-UNIQUE"
+        },
+        "publicIPName": {
+            "value": "GEN-UNIQUE"
+        },
+        "virtualNetwork": {
+            "value": "GEN-UNIQUE"
+        },
+        "nsgName": {
+            "value": "GEN-UNIQUE"
+        },
+        "rdpPort": {
+            "value": "GEN-UNIQUE"
+        },
+        "rdpRuleName": {
+            "value": "GEN-UNIQUE"
+        },
+        "ipAddress": {
+            "value": "GEN-UNIQUE"
+        }
+    }
+}
