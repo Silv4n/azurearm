@@ -104,7 +104,7 @@
  },
  "variables": {
    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork'), parameters('subnetName'))]",
-   "extensionUrl": "[uri('https://github.com/Silv4n/azurearm/raw/master/01_Standard_WinServer/nestedtemplates', 'customScriptExtension.json')]",
+   "extensionUrl": "[uri('https://github.com/Silv4n/azurearm/raw/master/01_Standard_WinServer/nestedtemplates/', 'customScriptExtension.json')]",
    "psScriptFileUri": "[uri('https://github.com/Silv4n/azurearm/raw/master/01_Standard_WinServer', 'Start-WinSRVInitial.ps1')]"
  },
  "resources": [
